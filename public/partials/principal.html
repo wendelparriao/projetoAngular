@@ -1,0 +1,35 @@
+<div class="jumbotron">
+    <h1 class="text-center">{{meutitulo.meuh1}}</h1>
+</div>
+
+<p class="alert alert-info" ng-show="mensagem.length">
+    {{mensagem}}    
+</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <form>
+        	<div class="input-group">
+        		<span class="input-group-btn">
+        			<a href="fotos/new" class="btn btn-primary">Nova Foto</a>
+        		</span>        		
+            	<input ng-model="filtro" ng-model-options="{ debounce: 500 }" class="form-control" placeholder="filtrar">
+        	</div>        	
+        </form>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <meu-painel ng-repeat="foto in fotos | filter: filtro" class="col-md-2 painel-animado" titulo="{{foto.titulo}}">
+        <img src="{{foto.url}}" class="img-responsive center-block" alt="{{foto.titulo}}">
+        <a href="fotos/edit/{{foto._id}}" class="btn btn-primary btn-block">Editar</a>
+        <meu-botao-perigo nome="Remover" acao="remover(foto)"></meu-botao-perigo>
+    </meu-painel><!-- fim panel -->
+    
+    <div class="col-md-12">
+        <div class="row">
+            <h1 class="text-left">Título das fotos cadastradas</h1>
+            <meus-titulos></meus-titulos>
+        </div>
+    </div>
+</div>
